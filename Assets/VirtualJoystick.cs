@@ -9,9 +9,11 @@ public class VirtualJoystick : MonoBehaviour, IDragHandler, IPointerUpHandler, I
 	private Image backgroundImage;
 	private Image joystickImage;
 	public Vector3 inputDirection{ get; set; }
+	Animator anim;
 
 	public void Start(){
 
+		anim = GameObject.Find ("JJ_Jackson").GetComponent<Animator> ();
 		backgroundImage = GetComponent<Image> ();
 		joystickImage = transform.GetChild(0).GetComponent<Image>();
 		inputDirection = Vector3.zero;
@@ -44,12 +46,14 @@ public class VirtualJoystick : MonoBehaviour, IDragHandler, IPointerUpHandler, I
 	public virtual void OnPointerDown(PointerEventData ped)
 	{
 		OnDrag (ped);
+		anim.SetBool ("pointerDown" , true);
 		//Debug.Log ("down");
 	}
 	public virtual void OnPointerUp(PointerEventData ped)
 	{
 		inputDirection = Vector3.zero;
 		joystickImage.rectTransform.anchoredPosition = Vector3.zero;
+		anim.SetBool ("pointerDown" , false);
 		//Debug.Log ("up");
 
 	}	
