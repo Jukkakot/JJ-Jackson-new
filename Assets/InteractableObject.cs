@@ -32,6 +32,7 @@ public class InteractableObject : MonoBehaviour {
 			currentActiveItem = Player.activeItem.GetName ();
 			doAction (this.name);
 		} else {
+			//Nothing happens when player isnt next to the object or when player dont have any active item or when invetory screen is open.
 			Debug.Log ("Ei ollut aktiivista tavaraa tai ei ollu oikea tavara");
 		}
 	}
