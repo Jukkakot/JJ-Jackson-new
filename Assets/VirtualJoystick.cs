@@ -18,6 +18,7 @@ public class VirtualJoystick : MonoBehaviour, IDragHandler, IPointerUpHandler, I
 		joystickImage = transform.GetChild(0).GetComponent<Image>();
 		inputDirection = Vector3.zero;
 	}
+	//calculating joystics placement on top of background picture while being its on drag
 	public virtual void OnDrag(PointerEventData ped)
 	{
 		Vector2 pos = Vector2.zero;
@@ -27,12 +28,15 @@ public class VirtualJoystick : MonoBehaviour, IDragHandler, IPointerUpHandler, I
 			    ped.pressEventCamera,
 			    out pos))
 		{
+			//using triangle to calculate the correct placement in x,y coordinates
 			pos.x = (pos.x / backgroundImage.rectTransform.sizeDelta.x);
 			pos.y = (pos.y / backgroundImage.rectTransform.sizeDelta.y);
 
+			//(condition) ? [true] : [false]
 			float x = (backgroundImage.rectTransform.pivot.x == 1) ? pos.x * 2 + 1 : pos.x * 2 - 1;
 			float y = (backgroundImage.rectTransform.pivot.y == 1) ? pos.y * 2 + 1 : pos.y * 2 - 1;
 
+			//inputting the coordinates in 3d vector to move the character
 			inputDirection = new Vector3 (x, 0, y);
 			inputDirection = (inputDirection.magnitude > 1) ? inputDirection.normalized : inputDirection;
 
@@ -40,6 +44,8 @@ public class VirtualJoystick : MonoBehaviour, IDragHandler, IPointerUpHandler, I
 				new Vector3 (inputDirection.x * (backgroundImage.rectTransform.sizeDelta.x / 3),
 					inputDirection.z * (backgroundImage.rectTransform.sizeDelta.y / 3));
 		}
+		//setting animation speed equal to movement speed
+		anim.SetFloat ("walkSpeed", (inputDirection.z));
 		//Debug.Log (inputDirection);
 		//Debug.Log ("Drag");
 	}
@@ -51,6 +57,7 @@ public class VirtualJoystick : MonoBehaviour, IDragHandler, IPointerUpHandler, I
 	}
 	public virtual void OnPointerUp(PointerEventData ped)
 	{
+		//setting everything to zero so the movement and the joystick stops as joystick is released.
 		inputDirection = Vector3.zero;
 		joystickImage.rectTransform.anchoredPosition = Vector3.zero;
 		anim.SetBool ("pointerDown" , false);
