@@ -8,6 +8,7 @@ public class MainController : MonoBehaviour
 	Button bInventory, invExit, ImageButton0,ImageButton1,ImageButton2,ImageButton3,ImageButton4,ImageButton5;
 	Rigidbody player, npc;
 	GameObject invVis;
+	Text currentItem;
 	public static bool inventoryOpen = false;
 	//Player JJ = new Player(); Cant use this at the moument, have to make player methods and variables public.
 
@@ -27,6 +28,8 @@ public class MainController : MonoBehaviour
 		npc = GameObject.Find ("NPC").GetComponent<Rigidbody> ();
 		invVis.SetActive (false);
 
+		currentItem = GameObject.Find ("CurrentItem").GetComponent<Text> ();
+
 		bInventory.onClick.AddListener (inventoryVisibility);
 		invExit.onClick.AddListener (inventoryVisibility);
 		ImageButton0.onClick.AddListener (() => invButton(ImageButton0.name));
@@ -39,7 +42,21 @@ public class MainController : MonoBehaviour
 
 	}
 	void invButton (string name) {
-		Player.updateActiveItem (name);
+		if (Player.hasActiveItem)
+		{
+			string tempActiveItem = Player.activeItem.GetName (); //Saves current active item tempprarely
+			Player.updateActiveItem (name);
+			if (!tempActiveItem.Equals(Player.activeItem.GetName())) //Inventory is closed if players active item was changed.
+			{
+				invVis.SetActive (false);
+				inventoryOpen = false;
+			}
+		}
+		else {
+			Player.updateActiveItem (name);
+			invVis.SetActive (false);
+			inventoryOpen = false;
+		}
 	}
 	void inventoryVisibility () {
 		if (inventoryOpen == true) {
@@ -52,7 +69,7 @@ public class MainController : MonoBehaviour
 			Player.updateInventory ();
 		}
 	}
-	// Update is called once per frame
+
 	void Update ()
 	{
 		player.transform.Translate (0, 0, ((FindObjectOfType <VirtualJoystick> ().inputDirection.z)*Player.playerSpeed));
@@ -61,5 +78,11 @@ public class MainController : MonoBehaviour
 		Vector3 lookDirection = new Vector3(player.position.x, 0 , player.position.z);
 
 		npc.transform.LookAt (lookDirection);
+		//Updates the currentItem text
+		if (Player.hasActiveItem) {
+			currentItem.text = "Current item: " + Player.getActiveItem ().GetName ();
+		} else {
+			currentItem.text = "Current item:";
+		}
 	}
 }

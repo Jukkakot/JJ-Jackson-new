@@ -49,22 +49,25 @@ public class Player: MonoBehaviour
 		}
 	}
 	public static void updateActiveItem (string name) {
-		int ButtonNumber = (int)char.GetNumericValue(name[11]);
+		int ButtonNumber = (int)char.GetNumericValue(name[11]); //The number of the button pressed
 		//Debug.Log ("Button Number: " + ButtonNumber);
-		if (inventory.Count >= ButtonNumber + 1) {
+		if (inventory.Count >= ButtonNumber + 1) {	//Inventory count is always one higher than 
+													//the buttonNumber of the last item in inventory
+													//bevcause buttonNumber is index.
 			Player.activeItem = Player.inventory [ButtonNumber];
 			Player.hasActiveItem = true;
 			Debug.Log ("Aktiivinen item on nyt " + Player.activeItem.GetName ());
 		}
 	}
-	/*public GameItem getActiveItem () {
+
+	public static GameItem getActiveItem () {
 		if (Player.hasActiveItem) {
 			return activeItem;
 		} else {
 			Debug.Log ("Aktiivista itemiä ei ollut");
 			return activeItem;
 		}
-	}*/
+	}
 	/*void OnTriggerEnter(Collider col)
 	{
 		if (tagList.Contains (string.Format ("|{0}|", col.tag)))
