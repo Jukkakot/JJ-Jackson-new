@@ -16,6 +16,7 @@ public class InteractableObject : MonoBehaviour {
 	 	objectDictionary.Add ("Revolver","Broom");
 		objectDictionary.Add ("CellDoor", "Revolver");
 		objectDictionary.Add ("Door3","Stone");
+		objectDictionary.Add ("NPCCity", "Alcohol");
 	}
 
 
@@ -79,13 +80,12 @@ public class InteractableObject : MonoBehaviour {
 				Debug.Log (currentActiveItem + " käytettiin objektiin: " + currentObject+ " mutta ei tehty mitään");
 			}
 			break;
-		case "Door3": 
+		case "NPCCity": 
 			if (objectDictionary[currentObject] == currentActiveItem) {
 				Debug.Log ("OIKEA KOMBINAATIO! "+currentObject + " + "+currentActiveItem);
 
 				//Add code here, what to do when default gameItem is used on gameObject
-				GameObject.Find (currentObject).SetActive (false);
-
+				FindObjectOfType<DialogueTrigger> ().TriggerDialogue ();
 				//--------------------------------------------------------------------
 				Player.inventory.RemoveAt (index);
 				Player.hasActiveItem = false;
@@ -96,7 +96,7 @@ public class InteractableObject : MonoBehaviour {
 			}
 			break;
 		default:
-			Debug.Log ("Active item: "+currentActiveItem+" current object "+currentObject + " default lause");
+			Debug.Log ("Active item: "+currentActiveItem+"\ncurrent object: "+currentObject + " default lause");
 			break;
 		}
 
