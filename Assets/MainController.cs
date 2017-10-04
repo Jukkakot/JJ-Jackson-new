@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class MainController : MonoBehaviour
 {
 	Button bInventory, invExit, ImageButton0,ImageButton1,ImageButton2,ImageButton3,ImageButton4,ImageButton5;
-	Rigidbody player, npc;
+	Rigidbody player, NPC_City, NPC_SaloonBartender, NPC_SaloonInjun,NPC_InjunBoss, NPC_Shaman, NPC_VP;
 	GameObject invVis;
 	Text currentItem;
 	public static bool inventoryOpen = false;
@@ -26,7 +26,7 @@ public class MainController : MonoBehaviour
 		player = GameObject.Find ("JJ_Jackson").GetComponent<Rigidbody>();
 		invVis = GameObject.Find ("InventoryScreen");
 		invExit = GameObject.Find ("InventoryExit").GetComponent<Button> ();
-		npc = GameObject.Find ("NPCCity").GetComponent<Rigidbody> ();
+
 		invVis.SetActive (false);
 
 		currentItem = GameObject.Find ("CurrentItem").GetComponent<Text> ();
@@ -39,6 +39,13 @@ public class MainController : MonoBehaviour
 		ImageButton3.onClick.AddListener (() => invButton(ImageButton3.name));
 		ImageButton4.onClick.AddListener (() => invButton(ImageButton4.name));
 		ImageButton5.onClick.AddListener (() => invButton(ImageButton5.name));
+
+		NPC_City = GameObject.Find ("NPCCity").GetComponent<Rigidbody> ();
+		NPC_SaloonBartender = GameObject.Find ("NPCSaloonBartender").GetComponent<Rigidbody> ();
+		NPC_SaloonInjun = GameObject.Find ("NPCSaloonInjun").GetComponent<Rigidbody> ();
+		NPC_InjunBoss = GameObject.Find ("NPCInjunBoss").GetComponent<Rigidbody> ();
+		NPC_Shaman = GameObject.Find ("NPCShaman").GetComponent<Rigidbody> ();
+		NPC_VP = GameObject.Find ("NPCVP").GetComponent<Rigidbody> ();
 
 
 	}
@@ -78,7 +85,13 @@ public class MainController : MonoBehaviour
 
 		Vector3 lookDirection = new Vector3(player.position.x, 0 , player.position.z);
 
-		npc.transform.LookAt (lookDirection);
+		NPC_City.transform.LookAt (lookDirection);
+		NPC_InjunBoss.transform.LookAt (lookDirection);
+		NPC_SaloonBartender.transform.LookAt (lookDirection);
+		NPC_SaloonInjun.transform.LookAt (lookDirection);
+		NPC_Shaman.transform.LookAt (lookDirection);
+		NPC_VP.transform.LookAt (lookDirection);
+		
 		//Updates the currentItem text
 		if (Player.hasActiveItem) {
 			currentItem.text = "Current item: " + Player.getActiveItem ().GetName ();
