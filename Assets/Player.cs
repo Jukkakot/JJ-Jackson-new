@@ -28,13 +28,15 @@ public class Player: MonoBehaviour
 	{
 		return playerSpeed;
 	}
-
-	public static void updateInventory () {
-		//resets the stringInventory list
+	public static void updateStringInventory () {
 		stringInventory.Clear();
 		foreach (GameItem item in Player.inventory) {
 			stringInventory.Add (item.GetName ());
 		}
+	}
+	public static void updateInventory () {
+		//resets the stringInventory list
+		updateStringInventory();
 		//Sets every inventory image to default picture
 		for (int index = 0; index <= 5; index++) {
 			GameObject.Find ("ItemImage" + index).GetComponent<RawImage> ().texture =
@@ -49,22 +51,25 @@ public class Player: MonoBehaviour
 		}
 	}
 	public static void updateActiveItem (string name) {
-		int ButtonNumber = (int)char.GetNumericValue(name[11]);
+		int ButtonNumber = (int)char.GetNumericValue(name[11]); //The number of the button pressed
 		//Debug.Log ("Button Number: " + ButtonNumber);
-		if (inventory.Count >= ButtonNumber + 1) {
+		if (inventory.Count >= ButtonNumber + 1) {	//Inventory count is always one higher than 
+													//the buttonNumber of the last item in inventory
+													//bevcause buttonNumber is index.
 			Player.activeItem = Player.inventory [ButtonNumber];
 			Player.hasActiveItem = true;
 			Debug.Log ("Aktiivinen item on nyt " + Player.activeItem.GetName ());
 		}
 	}
-	/*public GameItem getActiveItem () {
+
+	public static GameItem getActiveItem () {
 		if (Player.hasActiveItem) {
 			return activeItem;
 		} else {
 			Debug.Log ("Aktiivista itemiä ei ollut");
 			return activeItem;
 		}
-	}*/
+	}
 	/*void OnTriggerEnter(Collider col)
 	{
 		if (tagList.Contains (string.Format ("|{0}|", col.tag)))
