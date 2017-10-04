@@ -17,20 +17,6 @@ public class NPC: MonoBehaviour
 
 	public void OnMouseDown()
 	{
-<<<<<<< HEAD
-		Player.updateStringInventory ();
-		if (clickable)
-		{	Debug.Log ("You clicked " + this.name);
-			
-			if (this.name.Equals ("NPCTent") && !Player.stringInventory.Contains ("Letter")) {
-				Player.inventory.Add (new GameItem ("Letter", "Letter"));
-				FindObjectOfType<DialogueTrigger> ().TriggerDialogue ();
-			}
-			else {
-				FindObjectOfType<DialogueTrigger> ().TriggerDialogue ();
-			}
-		} 
-=======
 		if (!clickable)
 		{
 			return;
@@ -38,7 +24,6 @@ public class NPC: MonoBehaviour
 
 		Debug.Log ("You clicked me");
 		FindObjectOfType<DialogueTrigger> ().TriggerDialogue ();
->>>>>>> 42b5aafa476634553cb064bb670d7ad98b796415
 	}
 
 	void OnTriggerExit(Collider col)

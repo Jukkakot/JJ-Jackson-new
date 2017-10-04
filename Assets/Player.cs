@@ -28,15 +28,13 @@ public class Player: MonoBehaviour
 	{
 		return playerSpeed;
 	}
-	public static void updateStringInventory () {
+
+	public static void updateInventory () {
+		//resets the stringInventory list
 		stringInventory.Clear();
 		foreach (GameItem item in Player.inventory) {
 			stringInventory.Add (item.GetName ());
 		}
-	}
-	public static void updateInventory () {
-		//resets the stringInventory list
-		updateStringInventory();
 		//Sets every inventory image to default picture
 		for (int index = 0; index <= 5; index++) {
 			GameObject.Find ("ItemImage" + index).GetComponent<RawImage> ().texture =
