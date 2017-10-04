@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class Cutscene : MonoBehaviour
 {
 	public Texture[] frames;
-	public int framesPerSecond = 3;
+	public int framesPerSecond;
 
 	public int currentScene;
 
@@ -24,8 +24,13 @@ public class Cutscene : MonoBehaviour
 			}
 			GUI.DrawTexture (new Rect (0, 0, Screen.width, Screen.height), frames [frame-1]);
 		}
-		if(frame==frames.Length)
-			SceneManager.LoadScene (currentScene + 1);
+		if (frame == frames.Length)
+		{
+			if (currentScene == 3)
+				SceneManager.LoadScene (0);
+			else
+				SceneManager.LoadScene (currentScene + 1);
+		}
 	}
 
 }
