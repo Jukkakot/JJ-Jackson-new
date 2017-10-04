@@ -26,7 +26,7 @@ public class MainController : MonoBehaviour
 		player = GameObject.Find ("JJ_Jackson").GetComponent<Rigidbody>();
 		invVis = GameObject.Find ("InventoryScreen");
 		invExit = GameObject.Find ("InventoryExit").GetComponent<Button> ();
-		npc = GameObject.Find ("NPC").GetComponent<Rigidbody> ();
+		npc = GameObject.Find ("NPCCity").GetComponent<Rigidbody> ();
 		invVis.SetActive (false);
 
 		currentItem = GameObject.Find ("CurrentItem").GetComponent<Text> ();
