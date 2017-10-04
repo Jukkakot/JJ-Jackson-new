@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class MainController : MonoBehaviour
 {
 	Button bInventory, invExit, ImageButton0,ImageButton1,ImageButton2,ImageButton3,ImageButton4,ImageButton5;
-	Rigidbody player, npc;
+	Rigidbody player, npc, indianChief;
 	GameObject invVis;
 	Text currentItem;
 	public static bool inventoryOpen = false;
@@ -27,6 +27,7 @@ public class MainController : MonoBehaviour
 		invVis = GameObject.Find ("InventoryScreen");
 		invExit = GameObject.Find ("InventoryExit").GetComponent<Button> ();
 		npc = GameObject.Find ("NPC").GetComponent<Rigidbody> ();
+		indianChief = GameObject.Find ("IndianChief").GetComponent<Rigidbody> ();
 		invVis.SetActive (false);
 
 		currentItem = GameObject.Find ("CurrentItem").GetComponent<Text> ();
@@ -79,6 +80,7 @@ public class MainController : MonoBehaviour
 		Vector3 lookDirection = new Vector3(player.position.x, 0 , player.position.z);
 
 		npc.transform.LookAt (lookDirection);
+		indianChief.transform.LookAt (lookDirection);
 		//Updates the currentItem text
 		if (Player.hasActiveItem) {
 			currentItem.text = "Current item: " + Player.getActiveItem ().GetName ();
