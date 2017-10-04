@@ -8,23 +8,30 @@ public class NPC: MonoBehaviour
 
 	public void OnTriggerEnter(Collider col)
 	{
-			Debug.Log ("You're close to "+this.name);
+		if (col.gameObject.name == "JJ_Jackson")
+		{
+			Debug.Log ("You're close to NPC");
 			clickable = true;
+		}
 	}
 
 	public void OnMouseDown()
 	{
-		if (clickable)
+		if (!clickable)
 		{
-			Debug.Log ("You clicked me");
-			FindObjectOfType<DialogueTrigger> ().TriggerDialogue ();
+			return;
 		}
+
+		Debug.Log ("You clicked me");
+		FindObjectOfType<DialogueTrigger> ().TriggerDialogue ();
 	}
 
 	void OnTriggerExit(Collider col)
 	{
-			Debug.Log ("You left " + this.name);
+		if (col.gameObject.name == "JJ_Jackson")
+		{
 			clickable = false;
+		}
 	}
 }
 
