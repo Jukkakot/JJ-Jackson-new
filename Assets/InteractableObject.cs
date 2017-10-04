@@ -13,6 +13,7 @@ public class InteractableObject : MonoBehaviour {
 		
 	public InteractableObject (){
 		//Add "default" gameItem for each gameObject, you can have same gameItem for multiple gameObjects
+<<<<<<< HEAD
 	 	objectDictionary.Add ("Revolver","Broom");
 		objectDictionary.Add ("CellDoor", "Revolver");
 		objectDictionary.Add ("NPCCity", "Alcohol");
@@ -21,6 +22,11 @@ public class InteractableObject : MonoBehaviour {
 		objectDictionary.Add ("NPCInjunBoss", "Alcohol");
 		objectDictionary.Add ("Shaman", "Mushroom");
 		objectDictionary.Add ("NPCVP", "Revolver");
+=======
+	 	objectDictionary.Add ("Door","Rope");
+		objectDictionary.Add ("Door2", "Twig");
+		objectDictionary.Add ("Door3","Stone");
+>>>>>>> 42b5aafa476634553cb064bb670d7ad98b796415
 	}
 
 
@@ -33,7 +39,7 @@ public class InteractableObject : MonoBehaviour {
 
 	public void OnMouseDown()
 	{
-		if (clickable && Player.hasActiveItem && !MainController.inventoryOpen) {
+		if (clickable && Player.hasActiveItem && MainController.inventoryOpen == false ) {
 			currentActiveItem = Player.activeItem.GetName ();
 			doAction (this.name);
 		} else {
@@ -53,47 +59,34 @@ public class InteractableObject : MonoBehaviour {
 		int index = Player.stringInventory.IndexOf (currentActiveItem); //index of currently active item in players inventory
 			
 		switch (currentObject) {
-		case "Revolver": 
+		case "Door": 
 			if (objectDictionary[currentObject] == currentActiveItem) {
 				//Add code here, what to do when default gameItem is used on gameObject
 				Debug.Log ("OIKEA KOMBINAATIO! "+currentObject + " + "+currentActiveItem);
 				GameObject.Find (currentObject).SetActive (false);
-				Player.inventory.Add (new GameItem(currentObject,currentObject));
-				//------------------------------------------------------------------------
 				Player.inventory.RemoveAt (index);
-				Player.hasActiveItem = false;
-				Player.activeItem = null;
 			} else {
 				//Add code here, what to do when any other gameItem was used to the object other than the default gameItem
 				Debug.Log (currentActiveItem + " käytettiin objektiin: " + currentObject+ " mutta ei tehty mitään");
 			}
 			break;
-		case "CellDoor": 
+		case "Door2": 
 			if (objectDictionary[currentObject] == currentActiveItem) {
-				Debug.Log ("OIKEA KOMBINAATIO! "+currentObject + " + "+currentActiveItem);
-
 				//Add code here, what to do when default gameItem is used on gameObject
-				GameObject.Find (currentObject).GetComponent<BoxCollider> ().enabled = false;
-				GameObject.Find (currentObject).GetComponent<SpriteRenderer> ().sprite = (Sprite)Resources.Load ("CellDoorOpen", typeof(Sprite));
-				//--------------------------------------------------------------------
+				Debug.Log ("OIKEA KOMBINAATIO! "+currentObject + " + "+currentActiveItem);
+				GameObject.Find (currentObject).SetActive (false);
 				Player.inventory.RemoveAt (index);
-				Player.hasActiveItem = false;
-				Player.activeItem = null;
 			} else {
 				//Add code here, what to do when any other gameItem was used to the object other than the default gameItem
 				Debug.Log (currentActiveItem + " käytettiin objektiin: " + currentObject+ " mutta ei tehty mitään");
 			}
 			break;
-		case "NPCCity": 
+		case "Door3": 
 			if (objectDictionary[currentObject] == currentActiveItem) {
-				Debug.Log ("OIKEA KOMBINAATIO! "+currentObject + " + "+currentActiveItem);
-
 				//Add code here, what to do when default gameItem is used on gameObject
-				FindObjectOfType<DialogueTrigger> ().TriggerDialogue ();
-				//--------------------------------------------------------------------
+				Debug.Log ("OIKEA KOMBINAATIO! "+currentObject + " + "+currentActiveItem);
+				GameObject.Find (currentObject).SetActive (false);
 				Player.inventory.RemoveAt (index);
-				Player.hasActiveItem = false;
-				Player.activeItem = null;
 			} else {
 				//Add code here, what to do when any other gameItem was used to the object other than the default gameItem
 				Debug.Log (currentActiveItem + " käytettiin objektiin: " + currentObject+ " mutta ei tehty mitään");
@@ -179,7 +172,7 @@ public class InteractableObject : MonoBehaviour {
 			}
 			break;
 		default:
-			Debug.Log ("Active item: "+currentActiveItem+"\ncurrent object: "+currentObject + " default lause");
+			Debug.Log (currentActiveItem + " default lause");
 			break;
 		}
 

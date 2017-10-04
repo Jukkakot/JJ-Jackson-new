@@ -8,12 +8,16 @@ public class NPC: MonoBehaviour
 
 	public void OnTriggerEnter(Collider col)
 	{
-			Debug.Log ("You're close to "+this.name);
+		if (col.gameObject.name == "JJ_Jackson")
+		{
+			Debug.Log ("You're close to NPC");
 			clickable = true;
+		}
 	}
 
 	public void OnMouseDown()
 	{
+<<<<<<< HEAD
 		Player.updateStringInventory ();
 		if (clickable)
 		{	Debug.Log ("You clicked " + this.name);
@@ -26,12 +30,23 @@ public class NPC: MonoBehaviour
 				FindObjectOfType<DialogueTrigger> ().TriggerDialogue ();
 			}
 		} 
+=======
+		if (!clickable)
+		{
+			return;
+		}
+
+		Debug.Log ("You clicked me");
+		FindObjectOfType<DialogueTrigger> ().TriggerDialogue ();
+>>>>>>> 42b5aafa476634553cb064bb670d7ad98b796415
 	}
 
 	void OnTriggerExit(Collider col)
 	{
-			Debug.Log ("You left " + this.name);
+		if (col.gameObject.name == "JJ_Jackson")
+		{
 			clickable = false;
+		}
 	}
 }
 
