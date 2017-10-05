@@ -33,7 +33,7 @@ public class InteractableObject : MonoBehaviour {
 
 	public void OnMouseDown()
 	{
-		if (clickable && Player.hasActiveItem && !MainController.inventoryOpen) {
+		if (clickable && Player.hasActiveItem && !MainController.inventoryOpen && !MainController.mapOpen) {
 			currentActiveItem = Player.activeItem.GetName ();
 			doAction (this.name);
 		} else {

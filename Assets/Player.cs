@@ -70,14 +70,24 @@ public class Player: MonoBehaviour
 			return activeItem;
 		}
 	}
-	/*void OnTriggerEnter(Collider col)
-	{
-		if (tagList.Contains (string.Format ("|{0}|", col.tag)))
-		{
-			Debug.Log (col.gameObject.name+ " poimittu");
-			AddItem (new GameItem (col.gameObject.name));
-			col.gameObject.active = false;
+	public static void updateMapButtons ( ) {
+		//sets all the images to defualt picture first
+		for (int index = 0; index <= 1; index++) {
+			GameObject.Find ("MapImage" + index).GetComponent<RawImage> ().texture =
+				(Texture)Resources.Load ("DefaultItemImage", typeof(Texture));
+		}
+		//changes the image of mapImage if needed
+		int count = 0;
+		foreach (GameItem item in Player.inventory) {
+		//	Debug.Log (item.GetName ());
+			Debug.Log (count);
+			// || item.GetName ().Equals ("Map2")
+			if (item.GetName ().Equals ("Map0") ) {
+				
+				GameObject.Find ("MapImage"+count).GetComponent<RawImage> ().texture =
+					(Texture)Resources.Load ("Map"+count, typeof(Texture));
+				count++;
 		}
 	}
-	*/
+}
 }
