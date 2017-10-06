@@ -26,10 +26,8 @@ public class InteractableObject : MonoBehaviour {
 
 	public void OnTriggerEnter(Collider col)
 	{
-		if (col.name.Equals ("JJ_Jackson")) {
-			Debug.Log (col.name+" is close to " + this.name);
+		Debug.Log ("You're close to "+this.name);
 			clickable = true;
-		}
 		
 	}
 
@@ -46,10 +44,8 @@ public class InteractableObject : MonoBehaviour {
 
 	void OnTriggerExit(Collider col)
 	{
-		if (col.name.Equals ("JJ_Jackson")) {
-			Debug.Log (col.name+" left " + this.name);
+		Debug.Log ("You left "+this.name);
 			clickable = false;
-		}
 	}
 
 		public void doAction ( string currentObject ) {
