@@ -138,5 +138,11 @@ public class MainController : MonoBehaviour
 		} else {
 			currentItem.text = "Current item:";
 		}
+
+	}
+	//Sets the framerate limit to 60fps.
+	void Awake()
+	{
+		Application.targetFrameRate = 60;
 	}
 }
