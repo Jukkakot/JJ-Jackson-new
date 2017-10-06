@@ -8,7 +8,7 @@ public class PickableObject : MonoBehaviour
 	{
 		Player.inventory.Add (new GameItem (this.name, this.name));
 		GameObject.Find (this.name).SetActive (false);
-		if (this.name.Equals ("Map0")) {
+		if (this.name.Equals ("Map")) {
 			MainController.MapButtonVisibility ();
 		}
 	}

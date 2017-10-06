@@ -73,9 +73,9 @@ public class Player: MonoBehaviour
 	}
 	public static void updateMapButtons ( ) {
 		updateStringInventory ();
-		if (Player.stringInventory.Contains("Map0")) {
+		if (Player.stringInventory.Contains("Map")) {
 			GameObject.Find ("MapImage0").GetComponent<RawImage> ().texture =
-				(Texture)Resources.Load ("Map0", typeof(Texture));
+				(Texture)Resources.Load ("Map", typeof(Texture));
 		} else {
 			GameObject.Find ("MapImage0").GetComponent<RawImage> ().texture =
 				(Texture)Resources.Load ("DefaultItemImage", typeof(Texture));
