@@ -16,6 +16,7 @@ public class Player: MonoBehaviour
 	public static string tagList = "|Player|";
 	public static GameItem activeItem;
 	public static bool hasActiveItem = false;
+	public static bool hasMap = false;
 	public Player ()
 	{}
 
@@ -71,23 +72,13 @@ public class Player: MonoBehaviour
 		}
 	}
 	public static void updateMapButtons ( ) {
-		//sets all the images to defualt picture first
-		for (int index = 0; index <= 1; index++) {
-			GameObject.Find ("MapImage" + index).GetComponent<RawImage> ().texture =
+		updateStringInventory ();
+		if (Player.stringInventory.Contains("Map0")) {
+			GameObject.Find ("MapImage0").GetComponent<RawImage> ().texture =
+				(Texture)Resources.Load ("Map0", typeof(Texture));
+		} else {
+			GameObject.Find ("MapImage0").GetComponent<RawImage> ().texture =
 				(Texture)Resources.Load ("DefaultItemImage", typeof(Texture));
-		}
-		//changes the image of mapImage if needed
-		int count = 0;
-		foreach (GameItem item in Player.inventory) {
-		//	Debug.Log (item.GetName ());
-			Debug.Log (count);
-			// || item.GetName ().Equals ("Map2")
-			if (item.GetName ().Equals ("Map0") ) {
-				
-				GameObject.Find ("MapImage"+count).GetComponent<RawImage> ().texture =
-					(Texture)Resources.Load ("Map"+count, typeof(Texture));
-				count++;
-		}
-	}
+		}	
 }
 }

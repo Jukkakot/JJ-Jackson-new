@@ -6,9 +6,10 @@ using UnityEngine.UI;
 public class MainController : MonoBehaviour
 {
 	Button bInventory, invExit, ImageButton0,ImageButton1,ImageButton2,ImageButton3,ImageButton4,ImageButton5,inventoryClear;
-	Button mapOpenButton, mapExitButton, mapImageButton0, mapImageButton1;
+	Button mapOpenButton, mapExitButton;
 	Rigidbody player, NPC_City, NPC_SaloonBartender, NPC_SaloonInjun,NPC_InjunBoss, NPC_Shaman, NPC_VP;
 	GameObject invVis, mapVis;
+	public static GameObject mapButtonVis;
 	Text currentItem;
 	public static bool inventoryOpen = false;
 	public static bool mapOpen = false;
@@ -31,16 +32,15 @@ public class MainController : MonoBehaviour
 		//Map objects
 		mapOpenButton = GameObject.Find ("MapOpenButton").GetComponent<Button> ();
 		mapExitButton = GameObject.Find ("MapExit").GetComponent<Button> ();
-		mapImageButton0 = GameObject.Find ("MapImage0").GetComponent<Button> ();
-		mapImageButton1 = GameObject.Find ("MapImage1").GetComponent<Button> ();
 		mapVis = GameObject.Find ("MapScreen");
-
+		mapButtonVis = GameObject.Find ("MapOpenButton");
 		//Misc objects
 		currentItem = GameObject.Find ("CurrentItem").GetComponent<Text> ();
 		player = GameObject.Find ("JJ_Jackson").GetComponent<Rigidbody>();
 
 		invVis.SetActive (false);
 		mapVis.SetActive (false);
+		mapButtonVis.SetActive (false);
 
 		inventoryClear.onClick.AddListener (clearCurrentItem);
 
@@ -56,7 +56,6 @@ public class MainController : MonoBehaviour
 		ImageButton3.onClick.AddListener (() => invButton(ImageButton3.name));
 		ImageButton4.onClick.AddListener (() => invButton(ImageButton4.name));
 		ImageButton5.onClick.AddListener (() => invButton(ImageButton5.name));
-
 		/*NPC_City = GameObject.Find ("NPCCity").GetComponent<Rigidbody> ();
 		NPC_SaloonBartender = GameObject.Find ("NPCSaloonBartender").GetComponent<Rigidbody> ();
 		NPC_SaloonInjun = GameObject.Find ("NPCSaloonInjun").GetComponent<Rigidbody> ();
@@ -66,6 +65,11 @@ public class MainController : MonoBehaviour
 	*/
 
 	}
+		
+	public static void MapButtonVisibility () {
+		mapButtonVis.SetActive (true);
+	}
+
 	void clearCurrentItem () {
 		if (Player.hasActiveItem) {
 			Player.activeItem = null;
@@ -92,7 +96,6 @@ public class MainController : MonoBehaviour
 			inventoryOpen = false;
 		}
 	}
-
 	void mapVisibility () {
 		if (mapOpen) {
 			mapVis.SetActive (false);
