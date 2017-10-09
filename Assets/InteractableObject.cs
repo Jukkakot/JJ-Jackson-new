@@ -13,9 +13,8 @@ public class InteractableObject : MonoBehaviour {
 		
 	public InteractableObject (){
 		//Add "default" gameItem for each gameObject, you can have same gameItem for multiple gameObjects
-	 	objectDictionary.Add ("Revolver","Broom");
-		objectDictionary.Add ("CellDoor", "Revolver");
-		objectDictionary.Add ("NPCCity", "Alcohol");
+	 	objectDictionary.Add ("Revolver","broomStick");
+		objectDictionary.Add ("Celldoor", "Revolver");
 		objectDictionary.Add ("NPCSaloonBartender", "Coin");
 		objectDictionary.Add ("NPCSaloonInjun", "ShotClass");
 		objectDictionary.Add ("NPCInjunBoss", "Alcohol");
@@ -68,13 +67,13 @@ public class InteractableObject : MonoBehaviour {
 				Debug.Log (currentActiveItem + " käytettiin objektiin: " + currentObject+ " mutta ei tehty mitään");
 			}
 			break;
-		case "CellDoor": 
+		case "Celldoor": 
 			if (objectDictionary[currentObject] == currentActiveItem) {
 				Debug.Log ("OIKEA KOMBINAATIO! "+currentObject + " + "+currentActiveItem);
 
 				//Add code here, what to do when default gameItem is used on gameObject
-				GameObject.Find (currentObject).GetComponent<BoxCollider> ().enabled = false;
-				GameObject.Find (currentObject).GetComponent<SpriteRenderer> ().sprite = (Sprite)Resources.Load ("CellDoorOpen", typeof(Sprite));
+				//GameObject.Find (currentObject).GetComponent<BoxCollider> ().enabled = false;
+				GameObject.Find (currentObject).active = false;
 				//--------------------------------------------------------------------
 				Player.inventory.RemoveAt (index);
 				Player.hasActiveItem = false;

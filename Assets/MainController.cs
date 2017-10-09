@@ -64,6 +64,8 @@ public class MainController : MonoBehaviour
 		NPC_City = GameObject.Find ("NPCCity").GetComponent<Rigidbody> ();
 		/*NPC_VP = GameObject.Find ("NPCVP").GetComponent<Rigidbody> ();
 	*/
+
+		Player.inventory.Add (new GameItem ("Coin", "Coin"));
 	}
 	public static void MapButtonVisibility () {
 		mapButtonVis.SetActive (true);

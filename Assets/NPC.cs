@@ -7,32 +7,28 @@ public class NPC: MonoBehaviour
 	private bool clickable = false;
 
 	public void OnTriggerEnter(Collider col)
-	{
-			Debug.Log ("You're close to "+this.name);
+	{	
+		if (col.name.Equals ("JJ_Jackson")) {
+			
+			Debug.Log ("You're close to " + this.name);
 			clickable = true;
+		}
 	}
 
 	public void OnMouseDown()
 	{
-		Player.updateStringInventory ();
-		if (clickable)
-		{	Debug.Log ("You clicked " + this.name);
-			
-			if (this.name.Equals ("NPCTent") && !Player.stringInventory.Contains ("Letter")) {
-				Player.inventory.Add (new GameItem ("Letter", "Letter"));
-				FindObjectOfType<DialogueTrigger> ().TriggerDialogue ();
-			}
-			else {
-				FindObjectOfType<DialogueTrigger> ().TriggerDialogue ();
-			}
-		} 
+		if (clickable) {
+			GameObject.Find (this.name).GetComponent<DialogueTrigger> ().TriggerDialogue ();
+		}
 	}
 
 	void OnTriggerExit(Collider col)
-	{
+	{	
+		if (col.name.Equals ("JJ_Jackson")) {
 			Debug.Log ("You left " + this.name);
 			clickable = false;
 	}
+}
 }
 
 
