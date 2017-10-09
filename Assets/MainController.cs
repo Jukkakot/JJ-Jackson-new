@@ -64,9 +64,7 @@ public class MainController : MonoBehaviour
 		NPC_City = GameObject.Find ("NPCCity").GetComponent<Rigidbody> ();
 		/*NPC_VP = GameObject.Find ("NPCVP").GetComponent<Rigidbody> ();
 	*/
-
 	}
-		
 	public static void MapButtonVisibility () {
 		mapButtonVis.SetActive (true);
 	}
@@ -147,6 +145,6 @@ public class MainController : MonoBehaviour
 	//Sets the framerate limit to 60fps.
 	void Awake()
 	{
-		Application.targetFrameRate = 60;
+		Application.targetFrameRate = 30;
 	}
 }
