@@ -88,7 +88,7 @@ public class InteractableObject : MonoBehaviour {
 				Debug.Log ("OIKEA KOMBINAATIO! "+currentObject + " + "+currentActiveItem);
 
 				//Add code here, what to do when default gameItem is used on gameObject
-				FindObjectOfType<DialogueTrigger> ().TriggerDialogue ();
+				GameObject.Find (currentObject).GetComponent<DialogueTrigger> ().TriggerDialogue ();
 				//--------------------------------------------------------------------
 				Player.inventory.RemoveAt (index);
 				Player.hasActiveItem = false;
@@ -104,7 +104,7 @@ public class InteractableObject : MonoBehaviour {
 
 				//Add code here, what to do when default gameItem is used on gameObject
 				Player.inventory.Add(new GameItem("ShotClass","ShotClass"));
-				GameObject.Find (currentObject).GetComponent<DialogueTrigger> ().TriggerDialogue ();
+				FindObjectOfType<DialogueTrigger> ().TriggerDialogue ();
 				//--------------------------------------------------------------------
 				Player.inventory.RemoveAt (index);
 				Player.hasActiveItem = false;
@@ -146,7 +146,7 @@ public class InteractableObject : MonoBehaviour {
 				Debug.Log (currentActiveItem + " käytettiin objektiin: " + currentObject+ " mutta ei tehty mitään");
 			}
 			break;
-		case "Shaman": 
+		case "NPCShaman": 
 			if (objectDictionary[currentObject] == currentActiveItem) {
 				Debug.Log ("OIKEA KOMBINAATIO! "+currentObject + " + "+currentActiveItem);
 
