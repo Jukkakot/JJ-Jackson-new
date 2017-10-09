@@ -18,7 +18,7 @@ public class InteractableObject : MonoBehaviour {
 		objectDictionary.Add ("NPCSaloonBartender", "Coin");
 		objectDictionary.Add ("NPCSaloonInjun", "ShotClass");
 		objectDictionary.Add ("NPCInjunBoss", "Alcohol");
-		objectDictionary.Add ("Shaman", "Mushroom");
+		objectDictionary.Add ("NPCShaman", "Mushroom");
 		objectDictionary.Add ("NPCVP", "Revolver");
 	}
 
@@ -135,7 +135,7 @@ public class InteractableObject : MonoBehaviour {
 				Debug.Log ("OIKEA KOMBINAATIO! "+currentObject + " + "+currentActiveItem);
 
 				//Add code here, what to do when default gameItem is used on gameObject
-				Player.inventory.Add(new GameItem("MapToMushroom","MapToMushroom"));
+				GameObject.Find("Ladder").GetComponent<BoxCollider>().enabled = true;
 				FindObjectOfType<DialogueTrigger> ().TriggerDialogue ();
 				//--------------------------------------------------------------------
 				Player.inventory.RemoveAt (index);
@@ -146,7 +146,7 @@ public class InteractableObject : MonoBehaviour {
 				Debug.Log (currentActiveItem + " käytettiin objektiin: " + currentObject+ " mutta ei tehty mitään");
 			}
 			break;
-		case "Shaman": 
+		case "NPCShaman": 
 			if (objectDictionary[currentObject] == currentActiveItem) {
 				Debug.Log ("OIKEA KOMBINAATIO! "+currentObject + " + "+currentActiveItem);
 

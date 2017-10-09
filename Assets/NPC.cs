@@ -17,8 +17,13 @@ public class NPC: MonoBehaviour
 
 	public void OnMouseDown()
 	{
+		Player.updateStringInventory ();
 		if (clickable) {
-			GameObject.Find (this.name).GetComponent<DialogueTrigger> ().TriggerDialogue ();
+			if (this.name.Equals ("NPCCity") && !Player.stringInventory.Contains ("Map")) {
+				Player.inventory.Add (new GameItem ("Map", "Map"));
+				MainController.MapButtonVisibility ();
+				GameObject.Find (this.name).GetComponent<DialogueTrigger> ().TriggerDialogue ();
+			}
 		}
 	}
 

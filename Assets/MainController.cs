@@ -62,8 +62,8 @@ public class MainController : MonoBehaviour
 		NPC_InjunBoss = GameObject.Find ("NPCInjunBoss").GetComponent<Rigidbody> ();
 		NPC_Shaman = GameObject.Find ("NPCShaman").GetComponent<Rigidbody> ();
 		NPC_City = GameObject.Find ("NPCCity").GetComponent<Rigidbody> ();
-		/*NPC_VP = GameObject.Find ("NPCVP").GetComponent<Rigidbody> ();
-	*/
+		NPC_VP = GameObject.Find ("NPCVP").GetComponent<Rigidbody> ();
+	
 
 		Player.inventory.Add (new GameItem ("Coin", "Coin"));
 	}
@@ -133,8 +133,8 @@ public class MainController : MonoBehaviour
 		NPC_SaloonInjun.transform.LookAt (lookDirection);
 		NPC_Shaman.transform.LookAt (lookDirection);
 		NPC_City.transform.LookAt (lookDirection);
-	 /*	NPC_VP.transform.LookAt (lookDirection);
-		*/
+	 	NPC_VP.transform.LookAt (lookDirection);
+
 		
 		//Updates the currentItem text
 		if (Player.hasActiveItem) {
