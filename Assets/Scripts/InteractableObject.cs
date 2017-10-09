@@ -13,7 +13,7 @@ public class InteractableObject : MonoBehaviour {
 		
 	public InteractableObject (){
 		//Add "default" gameItem for each gameObject, you can have same gameItem for multiple gameObjects
-	 	objectDictionary.Add ("Revolver","broomStick");
+	 	objectDictionary.Add ("Revolver","BroomStick");
 		objectDictionary.Add ("Celldoor", "Revolver");
 		objectDictionary.Add ("NPCSaloonBartender", "Coin");
 		objectDictionary.Add ("NPCSaloonInjun", "ShotClass");
@@ -25,8 +25,10 @@ public class InteractableObject : MonoBehaviour {
 
 	public void OnTriggerEnter(Collider col)
 	{
+		if(col.name.Equals("JJ_Jackson")) {
 		Debug.Log ("You're close to "+this.name);
 			clickable = true;
+		}
 		
 	}
 
@@ -43,8 +45,10 @@ public class InteractableObject : MonoBehaviour {
 
 	void OnTriggerExit(Collider col)
 	{
+		if(col.name.Equals("JJ_Jackson")) {
 		Debug.Log ("You left "+this.name);
 			clickable = false;
+				}
 	}
 
 		public void doAction ( string currentObject ) {
@@ -55,7 +59,6 @@ public class InteractableObject : MonoBehaviour {
 		case "Revolver": 
 			if (objectDictionary[currentObject] == currentActiveItem) {
 				//Add code here, what to do when default gameItem is used on gameObject
-				Debug.Log ("OIKEA KOMBINAATIO! "+currentObject + " + "+currentActiveItem);
 				GameObject.Find (currentObject).SetActive (false);
 				Player.inventory.Add (new GameItem(currentObject,currentObject));
 				//------------------------------------------------------------------------
@@ -69,7 +72,6 @@ public class InteractableObject : MonoBehaviour {
 			break;
 		case "Celldoor": 
 			if (objectDictionary[currentObject] == currentActiveItem) {
-				Debug.Log ("OIKEA KOMBINAATIO! "+currentObject + " + "+currentActiveItem);
 
 				//Add code here, what to do when default gameItem is used on gameObject
 				//GameObject.Find (currentObject).GetComponent<BoxCollider> ().enabled = false;
@@ -85,7 +87,6 @@ public class InteractableObject : MonoBehaviour {
 			break;
 		case "NPCCity": 
 			if (objectDictionary[currentObject] == currentActiveItem) {
-				Debug.Log ("OIKEA KOMBINAATIO! "+currentObject + " + "+currentActiveItem);
 
 				//Add code here, what to do when default gameItem is used on gameObject
 				FindObjectOfType<DialogueTrigger> ().TriggerDialogue ();
@@ -100,7 +101,6 @@ public class InteractableObject : MonoBehaviour {
 			break;
 		case "NPCSaloonBartender": 
 			if (objectDictionary[currentObject] == currentActiveItem) {
-				Debug.Log ("OIKEA KOMBINAATIO! "+currentObject + " + "+currentActiveItem);
 
 				//Add code here, what to do when default gameItem is used on gameObject
 				Player.inventory.Add(new GameItem("ShotClass","ShotClass"));
@@ -116,7 +116,6 @@ public class InteractableObject : MonoBehaviour {
 			break;
 		case "NPCSaloonInjun": 
 			if (objectDictionary[currentObject] == currentActiveItem) {
-				Debug.Log ("OIKEA KOMBINAATIO! "+currentObject + " + "+currentActiveItem);
 
 				//Add code here, what to do when default gameItem is used on gameObject
 				Player.inventory.Add(new GameItem("Alcohol","Alcohol"));
@@ -132,7 +131,6 @@ public class InteractableObject : MonoBehaviour {
 			break;
 		case "NPCInjunBoss": 
 			if (objectDictionary[currentObject] == currentActiveItem) {
-				Debug.Log ("OIKEA KOMBINAATIO! "+currentObject + " + "+currentActiveItem);
 
 				//Add code here, what to do when default gameItem is used on gameObject
 				GameObject.Find("Ladder").GetComponent<BoxCollider>().enabled = true;
@@ -148,12 +146,15 @@ public class InteractableObject : MonoBehaviour {
 			break;
 		case "NPCShaman": 
 			if (objectDictionary[currentObject] == currentActiveItem) {
-				Debug.Log ("OIKEA KOMBINAATIO! "+currentObject + " + "+currentActiveItem);
-
 				//Add code here, what to do when default gameItem is used on gameObject
+				int number = Player.stringInventory.IndexOf("Map");
+				Player.inventory.RemoveAt (number);
 				Player.inventory.Add(new GameItem("MapToVP","MapToVP"));
 				FindObjectOfType<DialogueTrigger> ().TriggerDialogue ();
 				//--------------------------------------------------------------------
+
+				Player.updateStringInventory ();
+				index = Player.stringInventory.IndexOf (currentActiveItem);
 				Player.inventory.RemoveAt (index);
 				Player.hasActiveItem = false;
 				Player.activeItem = null;
@@ -164,7 +165,6 @@ public class InteractableObject : MonoBehaviour {
 			break;
 		case "NPCVP": 
 			if (objectDictionary[currentObject] == currentActiveItem) {
-				Debug.Log ("OIKEA KOMBINAATIO! "+currentObject + " + "+currentActiveItem);
 
 				//Add code here, what to do when default gameItem is used on gameObject
 				GameObject.Find("NPCVP").GetComponent<Transform> ().Rotate(0,-90f,0);

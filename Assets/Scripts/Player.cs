@@ -5,31 +5,17 @@ using UnityEngine.UI;
 
 public class Player: MonoBehaviour
 {
-	//string playerName = "J.J. Jackson";
 	public static List<GameItem> inventory = new List<GameItem>();
-	public static List<string> stringInventory = new List<string> ();
-	//List of items in inventory in string format
-	Vector3 playerPosition;
+	public static List<string> stringInventory = new List<string> (); //List of items in inventory in string format
+
 	public static float playerSpeed = 0.30f;
 	public static float rotationSpeed = 3f;
 
-	public static string tagList = "|Player|";
 	public static GameItem activeItem;
 	public static bool hasActiveItem = false;
 	public static bool hasMap = false;
-	public Player ()
-	{}
 
-	public void AddItem(GameItem item)
-	{
-		Player.inventory.Add (item);
-	}
-
-	public float GetSpeed()
-	{
-		return playerSpeed;
-	}
-	public static void updateStringInventory () {
+	public static void updateStringInventory () { //updates players string inventory
 		stringInventory.Clear();
 		foreach (GameItem item in Player.inventory) {
 			stringInventory.Add (item.GetName ());
@@ -53,13 +39,12 @@ public class Player: MonoBehaviour
 	}
 	public static void updateActiveItem (string name) {
 		int ButtonNumber = (int)char.GetNumericValue(name[11]); //The number of the button pressed
-		//Debug.Log ("Button Number: " + ButtonNumber);
+
 		if (inventory.Count >= ButtonNumber + 1) {	//Inventory count is always one higher than 
 													//the buttonNumber of the last item in inventory
 													//bevcause buttonNumber is index.
 			Player.activeItem = Player.inventory [ButtonNumber];
 			Player.hasActiveItem = true;
-			Debug.Log ("Aktiivinen item on nyt " + Player.activeItem.GetName ());
 		}
 	}
 
@@ -67,18 +52,24 @@ public class Player: MonoBehaviour
 		if (Player.hasActiveItem) {
 			return activeItem;
 		} else {
-			Debug.Log ("Aktiivista itemiä ei ollut");
 			return activeItem;
 		}
 	}
-	public static void updateMapButtons ( ) {
+
+	public static void updateMapButtons ( ) { //updates the picture in map screen
 		updateStringInventory ();
-		if (Player.stringInventory.Contains("Map")) {
-			GameObject.Find ("MapImage0").GetComponent<RawImage> ().texture =
+		if (Player.stringInventory.Contains ("Map") || Player.stringInventory.Contains ("MapToVP")) {
+			if (Player.stringInventory.Contains ("Map")) {
+				GameObject.Find ("MapImage0").GetComponent<RawImage> ().texture =
 				(Texture)Resources.Load ("Map", typeof(Texture));
-		} else {
+			}
+			if (Player.stringInventory.Contains ("MapToVP")) {
+				GameObject.Find ("MapImage0").GetComponent<RawImage> ().texture =
+				(Texture)Resources.Load ("MapToVP", typeof(Texture));
+			}
+		}else {
 			GameObject.Find ("MapImage0").GetComponent<RawImage> ().texture =
-				(Texture)Resources.Load ("DefaultItemImage", typeof(Texture));
+				(Texture)Resources.Load ("DefaultMapImage", typeof(Texture));
 		}	
 }
 }

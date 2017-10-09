@@ -9,8 +9,6 @@ public class NPC: MonoBehaviour
 	public void OnTriggerEnter(Collider col)
 	{	
 		if (col.name.Equals ("JJ_Jackson")) {
-			
-			Debug.Log ("You're close to " + this.name);
 			clickable = true;
 		}
 	}
@@ -30,7 +28,6 @@ public class NPC: MonoBehaviour
 	void OnTriggerExit(Collider col)
 	{	
 		if (col.name.Equals ("JJ_Jackson")) {
-			Debug.Log ("You left " + this.name);
 			clickable = false;
 	}
 }

@@ -8,7 +8,7 @@ public class MainController : MonoBehaviour
 	Button bInventory, invExit, ImageButton0,ImageButton1,ImageButton2,ImageButton3,ImageButton4,ImageButton5,inventoryClear;
 	Button mapOpenButton, mapExitButton;
 	Rigidbody player, NPC_City, NPC_SaloonBartender, NPC_SaloonInjun,NPC_InjunBoss, NPC_Shaman, NPC_VP;
-	GameObject invVis, mapVis;
+	GameObject invVis, mapVis, walkSpeedToggle;
 	public static GameObject mapButtonVis;
 	Text currentItem;
 	public static bool inventoryOpen = false;
@@ -35,6 +35,7 @@ public class MainController : MonoBehaviour
 		mapVis = GameObject.Find ("MapScreen");
 		mapButtonVis = GameObject.Find ("MapOpenButton");
 		//Misc objects
+		walkSpeedToggle = GameObject.Find("WalkSpeedToggle");
 		currentItem = GameObject.Find ("CurrentItem").GetComponent<Text> ();
 		player = GameObject.Find ("JJ_Jackson").GetComponent<Rigidbody>();
 
@@ -57,6 +58,8 @@ public class MainController : MonoBehaviour
 		ImageButton4.onClick.AddListener (() => invButton(ImageButton4.name));
 		ImageButton5.onClick.AddListener (() => invButton(ImageButton5.name));
 
+		walkSpeedToggle.GetComponent<Button> ().onClick.AddListener (ToggleWalkSpeed);
+
 		NPC_SaloonBartender = GameObject.Find ("NPCSaloonBartender").GetComponent<Rigidbody> ();
 		NPC_SaloonInjun = GameObject.Find ("NPCSaloonInjun").GetComponent<Rigidbody> ();
 		NPC_InjunBoss = GameObject.Find ("NPCInjunBoss").GetComponent<Rigidbody> ();
@@ -67,10 +70,24 @@ public class MainController : MonoBehaviour
 
 		Player.inventory.Add (new GameItem ("Coin", "Coin"));
 	}
+	//toggles the players walk speed
+	void ToggleWalkSpeed () {
+		if (Player.playerSpeed.Equals (0.30f)) {
+			Player.playerSpeed = 0.60f;
+			walkSpeedToggle.GetComponent<RawImage> ().texture = 
+				(Texture)Resources.Load ("Run", typeof(Texture));
+				
+		} else {
+			Player.playerSpeed = 0.30f;
+			walkSpeedToggle.GetComponent<RawImage> ().texture = 
+				(Texture)Resources.Load ("Walk", typeof(Texture));
+		}
+	}
+
 	public static void MapButtonVisibility () {
 		mapButtonVis.SetActive (true);
 	}
-
+	//method for "clear current item" button in inventory
 	void clearCurrentItem () {
 		if (Player.hasActiveItem) {
 			Player.activeItem = null;
@@ -79,11 +96,11 @@ public class MainController : MonoBehaviour
 		invVis.SetActive (false);
 		inventoryOpen = false;
 	}
-
+	//method for each button (gameitem) in inventory
 	void invButton (string name) {
 		if (Player.hasActiveItem)
 		{
-			string tempActiveItem = Player.activeItem.GetName (); //Saves current active item tempprarely
+			string tempActiveItem = Player.activeItem.GetName (); //Saves current active item temporarely
 			Player.updateActiveItem (name);
 			if (!tempActiveItem.Equals(Player.activeItem.GetName())) //Inventory is closed if players active item was changed.
 			{
@@ -96,7 +113,9 @@ public class MainController : MonoBehaviour
 			invVis.SetActive (false);
 			inventoryOpen = false;
 		}
-	}
+		}
+
+	//opens and closes map screen
 	void mapVisibility () {
 		if (mapOpen) {
 			mapVis.SetActive (false);
@@ -108,7 +127,7 @@ public class MainController : MonoBehaviour
 			Player.updateMapButtons ();
 		}
 	}
-
+	//Opens and closes inventory
 	void inventoryVisibility () {
 		if (inventoryOpen) {
 			invVis.SetActive (false);
@@ -144,7 +163,7 @@ public class MainController : MonoBehaviour
 		}
 
 	}
-	//Sets the framerate limit to 60fps.
+	//Sets the framerate limit to 30fps.
 	void Awake()
 	{
 		Application.targetFrameRate = 30;
