@@ -10,8 +10,8 @@ public class Player: MonoBehaviour
 	public static List<string> stringInventory = new List<string> ();
 	//List of items in inventory in string format
 	Vector3 playerPosition;
-	public static float playerSpeed = 0.15f;
-	public static float rotationSpeed = 1.5f;
+	public static float playerSpeed = 0.30f;
+	public static float rotationSpeed = 3f;
 
 	public static string tagList = "|Player|";
 	public static GameItem activeItem;
