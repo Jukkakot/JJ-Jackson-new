@@ -56,12 +56,13 @@ public class MainController : MonoBehaviour
 		ImageButton3.onClick.AddListener (() => invButton(ImageButton3.name));
 		ImageButton4.onClick.AddListener (() => invButton(ImageButton4.name));
 		ImageButton5.onClick.AddListener (() => invButton(ImageButton5.name));
-		/*NPC_City = GameObject.Find ("NPCCity").GetComponent<Rigidbody> ();
+
 		NPC_SaloonBartender = GameObject.Find ("NPCSaloonBartender").GetComponent<Rigidbody> ();
 		NPC_SaloonInjun = GameObject.Find ("NPCSaloonInjun").GetComponent<Rigidbody> ();
 		NPC_InjunBoss = GameObject.Find ("NPCInjunBoss").GetComponent<Rigidbody> ();
 		NPC_Shaman = GameObject.Find ("NPCShaman").GetComponent<Rigidbody> ();
-		NPC_VP = GameObject.Find ("NPCVP").GetComponent<Rigidbody> ();
+		NPC_City = GameObject.Find ("NPCCity").GetComponent<Rigidbody> ();
+		/*NPC_VP = GameObject.Find ("NPCVP").GetComponent<Rigidbody> ();
 	*/
 
 	}
@@ -125,14 +126,14 @@ public class MainController : MonoBehaviour
 		player.transform.Translate (0, 0, ((FindObjectOfType <VirtualJoystick> ().inputDirection.z)*Player.playerSpeed));
 		player.transform.Rotate (0, ((FindObjectOfType <VirtualJoystick> ().inputDirection.x)*Player.rotationSpeed), 0);
 
-		Vector3 lookDirection = new Vector3(player.position.x, 0 , player.position.z);
-		/*
-		NPC_City.transform.LookAt (lookDirection);
+		Vector3 lookDirection = new Vector3(player.position.x, player.position.y , player.position.z);
+
 		NPC_InjunBoss.transform.LookAt (lookDirection);
 		NPC_SaloonBartender.transform.LookAt (lookDirection);
 		NPC_SaloonInjun.transform.LookAt (lookDirection);
 		NPC_Shaman.transform.LookAt (lookDirection);
-		NPC_VP.transform.LookAt (lookDirection);
+		NPC_City.transform.LookAt (lookDirection);
+	 /*	NPC_VP.transform.LookAt (lookDirection);
 		*/
 		
 		//Updates the currentItem text
