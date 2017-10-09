@@ -73,7 +73,7 @@ public class InteractableObject : MonoBehaviour {
 
 				//Add code here, what to do when default gameItem is used on gameObject
 				//GameObject.Find (currentObject).GetComponent<BoxCollider> ().enabled = false;
-				GameObject.Find (currentObject).active = false;
+				GameObject.Find (currentObject).SetActive(false);
 				//--------------------------------------------------------------------
 				Player.inventory.RemoveAt (index);
 				Player.hasActiveItem = false;
@@ -104,7 +104,7 @@ public class InteractableObject : MonoBehaviour {
 
 				//Add code here, what to do when default gameItem is used on gameObject
 				Player.inventory.Add(new GameItem("ShotClass","ShotClass"));
-				FindObjectOfType<DialogueTrigger> ().TriggerDialogue ();
+				GameObject.Find (currentObject).GetComponent<DialogueTrigger> ().TriggerDialogue ();
 				//--------------------------------------------------------------------
 				Player.inventory.RemoveAt (index);
 				Player.hasActiveItem = false;

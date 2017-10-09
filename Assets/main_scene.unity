@@ -11613,11 +11613,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogue:
-    name: Juhani Virolainen
+    name: kjdkasjn
     sentences:
-    - Tere tulemast India reservi.
-    - Minu nimi on Juhani.
-    - "Kas soovite oma alkoholi v\xE4ljendada?"
+    - asdasd
+    - Minu niasd
+    - "Kas soovite oma alkoholi v\xE4ljendasdasd"
 --- !u!114 &1125425653
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18018,7 +18018,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1500636578}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1373.2, y: 0.95, z: 586.2}
+  m_LocalPosition: {x: 1363, y: 0.95, z: 324}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 1446824457}
