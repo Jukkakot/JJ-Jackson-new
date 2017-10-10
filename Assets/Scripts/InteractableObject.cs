@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class InteractableObject : MonoBehaviour {
 	bool clickable=false;
@@ -62,7 +63,6 @@ public class InteractableObject : MonoBehaviour {
 				GameObject.Find (currentObject).SetActive (false);
 				Player.inventory.Add (new GameItem(currentObject,currentObject));
 				//------------------------------------------------------------------------
-				Player.inventory.RemoveAt (index);
 				Player.hasActiveItem = false;
 				Player.activeItem = null;
 			} else {
@@ -164,14 +164,11 @@ public class InteractableObject : MonoBehaviour {
 			}
 			break;
 		case "NPCVP": 
-			if (objectDictionary[currentObject] == currentActiveItem) {
+			if (objectDictionary[currentObject] == currentActiveItem && Player.hasTalkedToVP) {
 
 				//Add code here, what to do when default gameItem is used on gameObject
-				GameObject.Find("NPCVP").GetComponent<Transform> ().Rotate(0,-90f,0);
+				SceneManager.LoadScene(3);
 				//--------------------------------------------------------------------
-				Player.inventory.RemoveAt (index);
-				Player.hasActiveItem = false;
-				Player.activeItem = null;
 			} else {
 				//Add code here, what to do when any other gameItem was used to the object other than the default gameItem
 				Debug.Log (currentActiveItem + " käytettiin objektiin: " + currentObject+ " mutta ei tehty mitään");

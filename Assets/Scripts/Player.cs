@@ -14,6 +14,7 @@ public class Player: MonoBehaviour
 	public static GameItem activeItem;
 	public static bool hasActiveItem = false;
 	public static bool hasMap = false;
+	public static bool hasTalkedToVP = false;
 
 	public static void updateStringInventory () { //updates players string inventory
 		stringInventory.Clear();

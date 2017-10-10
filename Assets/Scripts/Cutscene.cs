@@ -11,21 +11,32 @@ public class Cutscene : MonoBehaviour
 	public int currentScene;
 
 	private int frame = 0;
-	private int nextFrame;
-
+	private int nextFrame = 0;
+	
 	void OnGUI()
-	{
-	if (frame < frames.Length)
+	{		
+		if (this.frame < this.frames.Length) 
 		{
-		if (Time.time >= nextFrame)
+			if (Time.time >= nextFrame)
 			{
-				frame++;
+				this.frame++;
 				nextFrame += framesPerSecond;
 			}
-			GUI.DrawTexture (new Rect (0, 0, Screen.width, Screen.height), frames [frame-1]);
+			GUI.DrawTexture (new Rect (0, 0, Screen.width, Screen.height), this.frames [this.frame - 1]);
 		}
-		if(frame==frames.Length)
-			SceneManager.LoadScene (currentScene + 1);
+		else 
+		{	
+			if (currentScene < 3) 
+			{
+				SceneManager.LoadScene (currentScene + 1);
+			}
+			else
+			{		
+				Application.Quit ();
+			}
+		}
+		
 	}
-
 }
+
+
