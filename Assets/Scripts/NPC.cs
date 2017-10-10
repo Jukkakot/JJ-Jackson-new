@@ -12,7 +12,7 @@ public class NPC: MonoBehaviour
 			clickable = true;
 		}
 		if (col.name.Equals ("JJ_Jackson") && this.name.Equals ("Text trigger")) {
-			GameObject.Find (this.name).GetComponent<DialogueTrigger> ().TriggerDialogue ();
+				GameObject.Find (this.name).GetComponent<DialogueTrigger> ().TriggerDialogue ();
 			Player.hasTalkedToVP = true;
 		}
 	}

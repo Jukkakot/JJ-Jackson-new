@@ -63,6 +63,7 @@ public class InteractableObject : MonoBehaviour {
 				GameObject.Find (currentObject).SetActive (false);
 				Player.inventory.Add (new GameItem(currentObject,currentObject));
 				//------------------------------------------------------------------------
+				Player.inventory.RemoveAt (index);
 				Player.hasActiveItem = false;
 				Player.activeItem = null;
 			} else {
@@ -77,21 +78,6 @@ public class InteractableObject : MonoBehaviour {
 				//GameObject.Find (currentObject).GetComponent<BoxCollider> ().enabled = false;
 				GameObject.Find (currentObject).SetActive(false);
 				//--------------------------------------------------------------------
-				Player.inventory.RemoveAt (index);
-				Player.hasActiveItem = false;
-				Player.activeItem = null;
-			} else {
-				//Add code here, what to do when any other gameItem was used to the object other than the default gameItem
-				Debug.Log (currentActiveItem + " käytettiin objektiin: " + currentObject+ " mutta ei tehty mitään");
-			}
-			break;
-		case "NPCCity": 
-			if (objectDictionary[currentObject] == currentActiveItem) {
-
-				//Add code here, what to do when default gameItem is used on gameObject
-				FindObjectOfType<DialogueTrigger> ().TriggerDialogue ();
-				//--------------------------------------------------------------------
-				Player.inventory.RemoveAt (index);
 				Player.hasActiveItem = false;
 				Player.activeItem = null;
 			} else {
@@ -119,7 +105,7 @@ public class InteractableObject : MonoBehaviour {
 
 				//Add code here, what to do when default gameItem is used on gameObject
 				Player.inventory.Add(new GameItem("Alcohol","Alcohol"));
-				FindObjectOfType<DialogueTrigger> ().TriggerDialogue ();
+				GameObject.Find (currentObject).GetComponent<DialogueTrigger> ().TriggerDialogue ();
 				//--------------------------------------------------------------------
 				Player.inventory.RemoveAt (index);
 				Player.hasActiveItem = false;
@@ -134,7 +120,7 @@ public class InteractableObject : MonoBehaviour {
 
 				//Add code here, what to do when default gameItem is used on gameObject
 				GameObject.Find("Ladder").GetComponent<BoxCollider>().enabled = true;
-				FindObjectOfType<DialogueTrigger> ().TriggerDialogue ();
+				GameObject.Find (currentObject).GetComponent<DialogueTrigger> ().TriggerDialogue ();
 				//--------------------------------------------------------------------
 				Player.inventory.RemoveAt (index);
 				Player.hasActiveItem = false;
@@ -150,7 +136,7 @@ public class InteractableObject : MonoBehaviour {
 				int number = Player.stringInventory.IndexOf("Map");
 				Player.inventory.RemoveAt (number);
 				Player.inventory.Add(new GameItem("MapToVP","MapToVP"));
-				FindObjectOfType<DialogueTrigger> ().TriggerDialogue ();
+				GameObject.Find (currentObject).GetComponent<DialogueTrigger> ().TriggerDialogue ();
 				GameObject.Find ("Text trigger").GetComponent<BoxCollider> ().enabled = true;
 				//--------------------------------------------------------------------
 
