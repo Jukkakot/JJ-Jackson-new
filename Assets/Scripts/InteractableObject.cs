@@ -151,6 +151,7 @@ public class InteractableObject : MonoBehaviour {
 				Player.inventory.RemoveAt (number);
 				Player.inventory.Add(new GameItem("MapToVP","MapToVP"));
 				FindObjectOfType<DialogueTrigger> ().TriggerDialogue ();
+				GameObject.Find ("Text trigger").GetComponent<BoxCollider> ().enabled = true;
 				//--------------------------------------------------------------------
 
 				Player.updateStringInventory ();
