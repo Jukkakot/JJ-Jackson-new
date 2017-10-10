@@ -11,6 +11,10 @@ public class NPC: MonoBehaviour
 		if (col.name.Equals ("JJ_Jackson")) {
 			clickable = true;
 		}
+		if (col.name.Equals ("JJ_Jackson") && this.name.Equals ("Text trigger")) {
+			GameObject.Find (this.name).GetComponent<DialogueTrigger> ().TriggerDialogue ();
+			Player.hasTalkedToVP = true;
+		}
 	}
 
 	public void OnMouseDown()

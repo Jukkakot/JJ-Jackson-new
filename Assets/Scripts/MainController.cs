@@ -69,6 +69,7 @@ public class MainController : MonoBehaviour
 	
 
 		Player.inventory.Add (new GameItem ("Coin", "Coin"));
+		Player.inventory.Add (new GameItem ("Revolver", "Revolver"));
 	}
 	//toggles the players walk speed
 	void ToggleWalkSpeed () {
