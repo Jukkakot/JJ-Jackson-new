@@ -12,7 +12,9 @@ public class Cutscene : MonoBehaviour
 
 	private int frame = 0;
 	private int nextFrame = 0;
-	
+	void Start () {
+		Screen.orientation = ScreenOrientation.Landscape;
+	}
 	void OnGUI()
 	{		
 		if (this.frame < this.frames.Length) 

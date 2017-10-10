@@ -9,6 +9,7 @@ public class MainMenu : MonoBehaviour
 
 	void Start()
 	{
+		Screen.orientation = ScreenOrientation.Landscape;
 		GetComponent<Renderer> ().material.color = Color.white;
 	}
 

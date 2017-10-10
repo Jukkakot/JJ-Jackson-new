@@ -17,6 +17,7 @@ public class MainController : MonoBehaviour
 
 	void Start ()
 	{
+		Screen.orientation = ScreenOrientation.Landscape;
 		//Inventory objects
 		ImageButton0 = GameObject.Find ("ImageButton0").GetComponent<Button> ();
 		ImageButton1 = GameObject.Find ("ImageButton1").GetComponent<Button> ();
