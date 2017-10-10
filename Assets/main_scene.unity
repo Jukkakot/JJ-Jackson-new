@@ -6922,7 +6922,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.45588237, g: 0.357863, b: 0.100562274, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -7230,11 +7230,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogue:
-    name: Juhani Virolainen
+    name: Jolly Coyote
     sentences:
-    - Tere tulemast India reservi.
-    - Minu nimi on Juhani.
-    - "Kas soovite oma alkoholi v\xE4ljendada?"
+    - "Thanks a bunch, boy. You\u2019re alright."
+    - "You\u2019re lookin\u2019 for your brother? There was a weird lookin\u2019 fella
+      here last night. Saw him heading out towards our village."
+    - Just head north and you will find huge cactus. Our village is just few steps
+      west from there.
+    - Our chief is a mean looking man, but give him this to ease him up.
 --- !u!114 &465339173
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7427,11 +7430,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogue:
-    name: Juhani Virolainen
+    name: Shaman
     sentences:
-    - Tere tulemast India reservi.
-    - Minu nimi on Juhani.
-    - "Kas soovite oma alkoholi v\xE4ljendada?"
+    - "Huh? Who is it? Ah, yes. Your name is J.J. Jackson, isn\u2019t it?"
+    - Yes, I know of your brother. A real bad apple, that one.
+    - My visions have shown me his location. Let me mark his position on your map.
+    - "If you use this, then you\u2019re sure to find him, but be careful. He\u2019s
+      waiting"
 --- !u!114 &472287392
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8011,11 +8016,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogue:
-    name: Juhani Virolainen
+    name: Standing Buffalo
     sentences:
-    - Tere tulemast India reservi.
-    - Minu nimi on Juhani.
-    - "Kas soovite oma alkoholi v\xE4ljendada?"
+    - "I know who you\u2019re looking for. Rude little bugger."
+    - He robbed us last night and then headed out into the desert.
+    - "Our shaman is sure to know where he went, but he\u2019s an odd one."
+    - "You\u2019ll find him sitting atop a huge mountain, but he\u2019ll only talk
+      with you if you bring him mushrooms."
+    - Just head north and you will find ladder to the mountain. The mushrooms are
+      growing inside the cave.
 --- !u!114 &592923870
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8686,6 +8695,11 @@ Prefab:
         type: 2}
       propertyPath: DopplerLevel
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 82871427154311692, guid: 57394c17cc5a2564a8a1aee064fe0251,
+        type: 2}
+      propertyPath: m_Volume
+      value: 0.8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 57394c17cc5a2564a8a1aee064fe0251, type: 2}
@@ -11147,11 +11161,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogue:
-    name: Jou maan
+    name: Billy Bob
     sentences:
-    - Go inside and buy the injun a shot!
-    - hhg
-    - sdfsdf
+    - We pee? Never heard of a fella by that name.
+    - Talk to that drunken Injun in the saloon. He might know where your pee is.
+    - Mind you, he talks only if you give him some booze.
 --- !u!114 &1000954849
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11880,6 +11894,73 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 17, y: 1, z: 17}
   m_Center: {x: 0, y: -1.15, z: 0}
+--- !u!1 &1112440608
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1112440609}
+  - component: {fileID: 1112440611}
+  - component: {fileID: 1112440610}
+  m_Layer: 5
+  m_Name: Compass
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1112440609
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1112440608}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1837008733}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 30, y: -30}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0, y: 1}
+--- !u!114 &1112440610
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1112440608}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -98529514, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Texture: {fileID: 2800000, guid: 4620dbfb46ec9b84394e9777a944cf55, type: 3}
+  m_UVRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+--- !u!222 &1112440611
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1112440608}
 --- !u!1 &1120246777
 GameObject:
   m_ObjectHideFlags: 0
@@ -12168,11 +12249,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogue:
-    name: kjdkasjn
+    name: Bartender
     sentences:
-    - asdasd
-    - Minu niasd
-    - "Kas soovite oma alkoholi v\xE4ljendasdasd"
+    - "One shot of whiskey, comin\u2019 right up!"
 --- !u!114 &1125425653
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18743,7 +18822,7 @@ AudioSource:
   Spatialize: 0
   SpatializePostEffects: 0
   Priority: 128
-  DopplerLevel: 1
+  DopplerLevel: 0
   MinDistance: 1
   MaxDistance: 100
   Pan2D: 0
@@ -20045,11 +20124,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogue:
-    name: vp
+    name: V.P
     sentences:
-    - joo
-    - jou
-    - man
+    - "What are you doing here, J.J? Go away, and you won\u2019t get hurt!"
+    - You want the money, then? Come and get it!
+    - Prepare to die!
 --- !u!54 &1702916590
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -20987,6 +21066,7 @@ RectTransform:
   m_Children:
   - {fileID: 816744809}
   - {fileID: 1339157381}
+  - {fileID: 1112440609}
   m_Father: {fileID: 1982700729}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
