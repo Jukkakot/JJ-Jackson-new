@@ -18,7 +18,7 @@ public class Tumbleweed : MonoBehaviour {
 	void Update ()
 	{
 
-		if(transform.position == patrolPoints [currentPoint].position)
+		if(transform.position.x == patrolPoints [currentPoint].position.x)
 		{
 			currentPoint++;
 		}
