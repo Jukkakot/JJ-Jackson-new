@@ -8,7 +8,7 @@ public class MainController : MonoBehaviour
 	Button bInventory, invExit, ImageButton0,ImageButton1,ImageButton2,ImageButton3,ImageButton4,ImageButton5,inventoryClear;
 	Button mapOpenButton, mapExitButton, continueButton, quitButton, pauseButton;
 	Rigidbody player, NPC_City, NPC_SaloonBartender, NPC_SaloonInjun,NPC_InjunBoss, NPC_Shaman, NPC_VP;
-	GameObject invVis, mapVis, walkSpeedToggle,pauseScreen;
+	GameObject invVis, mapVis, walkSpeedToggle,pauseScreen, compass;
 	public static GameObject mapButtonVis;
 	Text currentItem;
 	public static bool inventoryOpen = false;
@@ -36,6 +36,7 @@ public class MainController : MonoBehaviour
 		mapExitButton = GameObject.Find ("MapExit").GetComponent<Button> ();
 		mapVis = GameObject.Find ("MapScreen");
 		mapButtonVis = GameObject.Find ("MapOpenButton");
+		compass = GameObject.Find ("Compass");
 		//Misc objects
 		walkSpeedToggle = GameObject.Find("WalkSpeedToggle");
 		currentItem = GameObject.Find ("CurrentItem").GetComponent<Text> ();
@@ -165,6 +166,7 @@ public class MainController : MonoBehaviour
 	{
 		player.transform.Translate (0, 0, ((FindObjectOfType <VirtualJoystick> ().inputDirection.z)*Player.playerSpeed));
 		player.transform.Rotate (0, ((FindObjectOfType <VirtualJoystick> ().inputDirection.x)*Player.rotationSpeed), 0);
+		compass.transform.Rotate (0, 0, ((FindObjectOfType <VirtualJoystick> ().inputDirection.x) * Player.rotationSpeed));
 
 		Vector3 lookDirection = new Vector3(player.position.x, player.position.y , player.position.z);
 
