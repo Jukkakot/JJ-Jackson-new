@@ -27,7 +27,7 @@ public class Cutscene : MonoBehaviour
 			if ( Time.timeSinceLevelLoad >= nextFrame)
 			{
 				this.frame++;
-				nextFrame += framesPerSecond;
+				nextFrame += secondsPerFrame;
 			}
 			//Draws the textures in the array to the canvas
 			GUI.DrawTexture (new Rect (0, 0, Screen.width, Screen.height), this.frames [this.frame - 1]);
