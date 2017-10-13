@@ -6,20 +6,24 @@ using UnityEngine.SceneManagement;
 public class Cutscene : MonoBehaviour
 {
 	public Texture[] frames;
-	public int framesPerSecond = 3;
+	public float framesPerSecond;
 
 	public int currentScene;
 
 	private int frame = 0;
-	private int nextFrame = 0;
+	private float nextFrame = 0f;
 	void Start () {
 		Screen.orientation = ScreenOrientation.Landscape;
+		frame = 0;
+		nextFrame = 0f;
+
 	}
 	void OnGUI()
 	{		
+		
 		if (this.frame < this.frames.Length) 
 		{
-			if (Time.time >= nextFrame)
+			if ( Time.timeSinceLevelLoad >= nextFrame)
 			{
 				this.frame++;
 				nextFrame += framesPerSecond;
